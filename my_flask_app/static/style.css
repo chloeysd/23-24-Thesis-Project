@@ -1,0 +1,98 @@
+/* ref:https://www.w3schools.com/html/html_css.asp */
+
+body {
+    /* Sets the font for the entire document */
+    font-family: Arial, sans-serif;
+    /* Sets the background image to a GIF */
+    background-image: url('/static/background.GIF'); 
+    /* Ensures the background image covers the entire page */
+    background-size: cover; 
+    /* Centers the background image both horizontally and vertically */
+    background-position: center center;
+    /* Prevents the background image from repeating */
+    background-repeat: no-repeat; 
+    /* Keeps the background image fixed during scrolling */
+    background-attachment: fixed; 
+    /* Removes default margin */
+    margin: 0; 
+    /* Adds padding inside the body */
+    padding: 20px; 
+    /* Sets the default text color to a light shade */
+    color: #fcfcfc; 
+}
+
+h1 {
+    /* Sets the heading text color to a very light shade */
+    color: #ededed; 
+    /* Centers the heading text */
+    text-align: center;
+    /* Sets the font size for the heading */
+    font-size: 30px;
+    /* Adds space below the heading */
+    margin-bottom: 30px; 
+    /* Adds a shadow effect to the text for better visibility */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+    /* Adds space above the heading to move it down */
+    margin-top: 150px;
+}
+
+form {
+    background-color: rgba(23, 24, 24, 0.479); /* Sets a semi-transparent background for the form */
+    padding: 20px; /* Adds padding inside the form */
+    border-radius: 8px; /* Rounds the corners of the form */
+    max-width: 500px; /* Limits the form width to 500px */
+    margin: 50px auto; /* Centers the form horizontally and adds space above it */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adds a slight shadow around the form for depth */
+}
+
+input[type="text"] {
+    /* Makes the input field take up the full width of its container */
+    width: 100%; 
+    /* Adds padding inside the input field */
+    padding: 10px; 
+    /* Adds space below the input field */
+    margin-bottom: 15px; 
+    /* Sets a semi-transparent border for the input field */
+    border: 1px solid #08151d68;
+    /* Rounds the corners of the input field */
+    border-radius: 4px;
+    /* Sets the font size for the input text */
+    font-size: 16px;
+    /* Ensures padding is included in the element's width and height */
+    box-sizing: border-box; 
+}
+
+button {
+    /* Sets the background color of the button to a dark shade */
+    background-color: #010d15;
+    /* Sets the button text color to white */ 
+    color: white; 
+    /* Removes any default border around the button */
+    border: none; 
+    /* Adds padding inside the button */
+    padding: 10px 20px;
+    /* Rounds the corners of the button */
+    border-radius: 4px;
+    /* Sets the font size for the button text */
+    font-size: 16px; 
+    /* Changes the cursor to a pointer when hovering over the button */
+    cursor: pointer;
+    /* Adds a smooth transition effect when the background color changes */
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    /* Changes the button background color on hover */
+    background-color: #ec0707; 
+}
+
+p {
+    /* Centers the paragraph text */
+    text-align: center; 
+    /* Sets the font size for paragraph text */
+    font-size: 18px;
+    /* Sets the paragraph text color to white */
+    color: #ffffff;
+    /* Adds a shadow to the text for better readability */
+    text-shadow: 2px 2px 4px rgba(102, 25, 25, 0.7); 
+}

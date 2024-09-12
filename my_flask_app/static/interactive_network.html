@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 750px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#AB63FA", "font": {"color": "white"}, "id": "INFJ", "label": "INFJ", "shape": "dot", "size": 32.85761766827943, "title": "INFJ (Positive)"}, {"color": "#000000", "font": {"color": "white"}, "id": "Chanel", "label": "Chanel", "shape": "dot", "size": 10, "title": "Chanel"}, {"color": "#000000", "font": {"color": "white"}, "id": "Gucci", "label": "Gucci", "shape": "dot", "size": 10, "title": "Gucci"}, {"color": "#000000", "font": {"color": "white"}, "id": "Dior", "label": "Dior", "shape": "dot", "size": 10, "title": "Dior"}, {"color": "#000000", "font": {"color": "white"}, "id": "Versace", "label": "Versace", "shape": "dot", "size": 10, "title": "Versace"}, {"color": "#000000", "font": {"color": "white"}, "id": "Prada", "label": "Prada", "shape": "dot", "size": 10, "title": "Prada"}, {"color": "#000000", "font": {"color": "white"}, "id": "Ralph Lauren", "label": "Ralph Lauren", "shape": "dot", "size": 10, "title": "Ralph Lauren"}, {"color": "#000000", "font": {"color": "white"}, "id": "Tiffany", "label": "Tiffany", "shape": "dot", "size": 10, "title": "Tiffany"}, {"color": "#000000", "font": {"color": "white"}, "id": "Louis Vuitton", "label": "Louis Vuitton", "shape": "dot", "size": 10, "title": "Louis Vuitton"}, {"color": "#000000", "font": {"color": "white"}, "id": "Cartier", "label": "Cartier", "shape": "dot", "size": 10, "title": "Cartier"}, {"color": "#000000", "font": {"color": "white"}, "id": "Rolex", "label": "Rolex", "shape": "dot", "size": 10, "title": "Rolex"}, {"color": "#EF553B", "font": {"color": "white"}, "id": "INTJ", "label": "INTJ", "shape": "dot", "size": 27.954036652334416, "title": "INTJ (Neutral)"}, {"color": "#00CC96", "font": {"color": "white"}, "id": "INFP", "label": "INFP", "shape": "dot", "size": 38.61954069526783, "title": "INFP (Neutral)"}, {"color": "#636EFA", "font": {"color": "white"}, "id": "INTP", "label": "INTP", "shape": "dot", "size": 22.322016949726976, "title": "INTP (Neutral)"}, {"color": "#19D3F3", "font": {"color": "white"}, "id": "ISTP", "label": "ISTP", "shape": "dot", "size": 32.5, "title": "ISTP (Positive)"}, {"color": "#FFA15A", "font": {"color": "white"}, "id": "ENFP", "label": "ENFP", "shape": "dot", "size": 37.69101731601732, "title": "ENFP (Positive)"}, {"color": "#FF6692", "font": {"color": "white"}, "id": "ENTP", "label": "ENTP", "shape": "dot", "size": 44.62777777777778, "title": "ENTP (Positive)"}, {"color": "#000000", "font": {"color": "white"}, "id": "ENFJ", "label": "ENFJ", "shape": "dot", "size": 10, "title": "ENFJ (Positive)"}, {"color": "#B6E880", "font": {"color": "white"}, "id": "ISFP", "label": "ISFP", "shape": "dot", "size": 28.333333333333332, "title": "ISFP (Positive)"}, {"color": "#FF97FF", "font": {"color": "white"}, "id": "ENTJ", "label": "ENTJ", "shape": "dot", "size": 10.0, "title": "ENTJ (Negative)"}]);
+                  edges = new vis.DataSet([{"from": "INFJ", "to": "Chanel", "width": 1}, {"from": "INFJ", "to": "Gucci", "width": 1}, {"from": "INFJ", "to": "Dior", "width": 1}, {"from": "INFJ", "to": "Versace", "width": 1}, {"from": "INFJ", "to": "Prada", "width": 1}, {"from": "INFJ", "to": "Ralph Lauren", "width": 1}, {"from": "INFJ", "to": "Tiffany", "width": 1}, {"from": "INFJ", "to": "Louis Vuitton", "width": 1}, {"from": "INFJ", "to": "Cartier", "width": 1}, {"from": "INFJ", "to": "Rolex", "width": 1}, {"from": "Chanel", "to": "INTJ", "width": 1}, {"from": "Chanel", "to": "INFP", "width": 1}, {"from": "Chanel", "to": "INTP", "width": 1}, {"from": "Chanel", "to": "ISTP", "width": 1}, {"from": "Chanel", "to": "ENFP", "width": 1}, {"from": "Chanel", "to": "ENTP", "width": 1}, {"from": "INTJ", "to": "Gucci", "width": 1}, {"from": "INTJ", "to": "Dior", "width": 1}, {"from": "INTJ", "to": "Versace", "width": 1}, {"from": "INTJ", "to": "Prada", "width": 1}, {"from": "INTJ", "to": "Ralph Lauren", "width": 1}, {"from": "INTJ", "to": "Tiffany", "width": 1}, {"from": "INTJ", "to": "Louis Vuitton", "width": 1}, {"from": "INTJ", "to": "Cartier", "width": 1}, {"from": "INTJ", "to": "Rolex", "width": 1}, {"from": "INFP", "to": "Gucci", "width": 1}, {"from": "INFP", "to": "Dior", "width": 1}, {"from": "INFP", "to": "Versace", "width": 1}, {"from": "INFP", "to": "Prada", "width": 1}, {"from": "INFP", "to": "Ralph Lauren", "width": 1}, {"from": "INFP", "to": "Tiffany", "width": 1}, {"from": "INFP", "to": "Louis Vuitton", "width": 1}, {"from": "INFP", "to": "Cartier", "width": 1}, {"from": "INFP", "to": "Rolex", "width": 1}, {"from": "INTP", "to": "Gucci", "width": 1}, {"from": "INTP", "to": "Dior", "width": 1}, {"from": "INTP", "to": "Versace", "width": 1}, {"from": "INTP", "to": "Prada", "width": 1}, {"from": "INTP", "to": "Ralph Lauren", "width": 1}, {"from": "INTP", "to": "Tiffany", "width": 1}, {"from": "INTP", "to": "Louis Vuitton", "width": 1}, {"from": "INTP", "to": "Cartier", "width": 1}, {"from": "INTP", "to": "Rolex", "width": 1}, {"from": "ISTP", "to": "Dior", "width": 1}, {"from": "ISTP", "to": "Versace", "width": 1}, {"from": "ISTP", "to": "Prada", "width": 1}, {"from": "ISTP", "to": "Rolex", "width": 1}, {"from": "ENFP", "to": "Gucci", "width": 1}, {"from": "ENFP", "to": "Dior", "width": 1}, {"from": "ENFP", "to": "Prada", "width": 1}, {"from": "ENFP", "to": "Ralph Lauren", "width": 1}, {"from": "ENFP", "to": "Louis Vuitton", "width": 1}, {"from": "ENFP", "to": "Cartier", "width": 1}, {"from": "ENFP", "to": "Rolex", "width": 1}, {"from": "ENTP", "to": "Gucci", "width": 1}, {"from": "ENTP", "to": "Versace", "width": 1}, {"from": "ENTP", "to": "Prada", "width": 1}, {"from": "ENTP", "to": "Ralph Lauren", "width": 1}, {"from": "ENTP", "to": "Tiffany", "width": 1}, {"from": "ENTP", "to": "Cartier", "width": 1}, {"from": "Ralph Lauren", "to": "ENFJ", "width": 1}, {"from": "Cartier", "to": "ISFP", "width": 1}, {"from": "Cartier", "to": "ENTJ", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
