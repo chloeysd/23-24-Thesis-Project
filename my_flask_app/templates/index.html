@@ -1,0 +1,33 @@
+<!-- ref:https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics -->
+<!-- ref:https://www.dofactory.com/html/method/post -->
+<!-- ref:https://www.w3schools.com/tags/tag_comment.asp -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specifies the document type and declares it as an HTML5 document -->
+    <meta charset="UTF-8">
+    <!-- Sets the character encoding for the document to UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ensures proper rendering and touch zooming on mobile devices -->
+    <title>MBTI Prediction</title>
+    <!-- Sets the title of the page that appears in the browser tab -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Links the external CSS file for styling -->
+</head>
+<body>
+    <!-- The main content of the webpage begins here -->
+    <h1>MBTI Personality Type Prediction</h1>
+    <!-- Displays the main heading of the page -->
+    <form action="/result" method="post">
+        <!-- Creates a form that will send data to the "/result" route using the POST method -->
+        <label for="user_input">Enter some text:</label><br><br>
+        <!-- Label for the textarea input, asking the user to enter some text -->
+        <textarea id="user_input" name="user_input" rows="4" cols="50"></textarea><br><br>
+        <!-- A multi-line text input field where the user can enter their text -->
+        <input type="submit" value="Predict MBTI Type">
+        <!-- Submit button that sends the form data when clicked -->
+    </form>
+
+</body>
+</html>
+

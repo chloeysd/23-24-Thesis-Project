@@ -1,0 +1,33 @@
+<!-- ref:https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics -->
+<!-- ref:https://stackoverflow.com/questions/22952643/link-not-going-back-to-home-page-->
+<!-- ref:https://jinja.palletsprojects.com/en/3.1.x/extensions/#loop-controls-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Defines the document type and version of HTML -->
+    <meta charset="UTF-8">
+    <!-- Specifies the character encoding for the HTML document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ensures proper scaling on mobile devices -->
+    <title>LDA Analysis Result</title>
+    <!-- Sets the title of the web page displayed in the browser tab -->
+</head>
+<body>
+    <!-- The body of the HTML document -->
+    <h1>LDA Analysis for {{ mbti_type }}</h1>
+    <!-- Displays a heading with the MBTI type used in the LDA analysis -->
+    <ul>
+        <!-- Creates an unordered list to display the topics -->
+        {% for topic in topics %}
+        <!-- A loop to iterate over each topic in the topics list -->
+        <li>{{ topic }}</li>
+        <!-- Displays each topic as a list item -->
+        {% endfor %}
+        <!-- Ends the loop -->
+    </ul>
+    
+    <a href="/">Back to Home</a>
+    <!-- Provides a link to return to the home page -->
+</body>
+</html>
+
