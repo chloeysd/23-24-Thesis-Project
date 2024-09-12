@@ -1,0 +1,12 @@
+pip freeze > requirements.txt
+
+Flask
+scikit-learn
+numpy
+joblib
+matplotlib
+pandas
+textblob
+networkx
+pyvis
+
