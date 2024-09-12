@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 750px;
+            background-color: #222222;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#AB63FA", "font": {"color": "white"}, "id": "INFJ", "label": "INFJ", "shape": "dot", "size": 32.85761766827943, "title": "INFJ (Positive)"}, {"color": "grey", "font": {"color": "white"}, "id": "Chanel", "label": "Chanel", "shape": "dot", "size": 2, "title": "Chanel"}, {"color": "grey", "font": {"color": "white"}, "id": "Gucci", "label": "Gucci", "shape": "dot", "size": 2, "title": "Gucci"}, {"color": "grey", "font": {"color": "white"}, "id": "Dior", "label": "Dior", "shape": "dot", "size": 2, "title": "Dior"}, {"color": "grey", "font": {"color": "white"}, "id": "Versace", "label": "Versace", "shape": "dot", "size": 2, "title": "Versace"}, {"color": "grey", "font": {"color": "white"}, "id": "Prada", "label": "Prada", "shape": "dot", "size": 2, "title": "Prada"}, {"color": "grey", "font": {"color": "white"}, "id": "Ralph Lauren", "label": "Ralph Lauren", "shape": "dot", "size": 2, "title": "Ralph Lauren"}, {"color": "grey", "font": {"color": "white"}, "id": "Tiffany", "label": "Tiffany", "shape": "dot", "size": 2, "title": "Tiffany"}, {"color": "grey", "font": {"color": "white"}, "id": "Louis Vuitton", "label": "Louis Vuitton", "shape": "dot", "size": 2, "title": "Louis Vuitton"}, {"color": "grey", "font": {"color": "white"}, "id": "Cartier", "label": "Cartier", "shape": "dot", "size": 2, "title": "Cartier"}, {"color": "grey", "font": {"color": "white"}, "id": "Rolex", "label": "Rolex", "shape": "dot", "size": 2, "title": "Rolex"}, {"color": "#EF553B", "font": {"color": "white"}, "id": "INTJ", "label": "INTJ", "shape": "dot", "size": 27.954036652334416, "title": "INTJ (Neutral)"}, {"color": "#00CC96", "font": {"color": "white"}, "id": "INFP", "label": "INFP", "shape": "dot", "size": 38.61954069526783, "title": "INFP (Neutral)"}, {"color": "#636EFA", "font": {"color": "white"}, "id": "INTP", "label": "INTP", "shape": "dot", "size": 22.322016949726976, "title": "INTP (Neutral)"}, {"color": "#19D3F3", "font": {"color": "white"}, "id": "ISTP", "label": "ISTP", "shape": "dot", "size": 32.5, "title": "ISTP (Positive)"}, {"color": "#FFA15A", "font": {"color": "white"}, "id": "ENFP", "label": "ENFP", "shape": "dot", "size": 37.69101731601732, "title": "ENFP (Positive)"}, {"color": "#FF6692", "font": {"color": "white"}, "id": "ENTP", "label": "ENTP", "shape": "dot", "size": 44.62777777777778, "title": "ENTP (Positive)"}, {"color": "grey", "font": {"color": "white"}, "id": "ENFJ", "label": "ENFJ", "shape": "dot", "size": 2, "title": "ENFJ (Positive)"}, {"color": "#B6E880", "font": {"color": "white"}, "id": "ISFP", "label": "ISFP", "shape": "dot", "size": 28.333333333333332, "title": "ISFP (Positive)"}, {"color": "#FF97FF", "font": {"color": "white"}, "id": "ENTJ", "label": "ENTJ", "shape": "dot", "size": 10.0, "title": "ENTJ (Negative)"}]);
+        edges = new vis.DataSet([{"from": "INFJ", "to": "Chanel", "weight": 1}, {"from": "INFJ", "to": "Gucci", "weight": 1}, {"from": "INFJ", "to": "Dior", "weight": 1}, {"from": "INFJ", "to": "Versace", "weight": 1}, {"from": "INFJ", "to": "Prada", "weight": 1}, {"from": "INFJ", "to": "Ralph Lauren", "weight": 1}, {"from": "INFJ", "to": "Tiffany", "weight": 1}, {"from": "INFJ", "to": "Louis Vuitton", "weight": 1}, {"from": "INFJ", "to": "Cartier", "weight": 1}, {"from": "INFJ", "to": "Rolex", "weight": 1}, {"from": "Chanel", "to": "INTJ", "weight": 1}, {"from": "Chanel", "to": "INFP", "weight": 1}, {"from": "Chanel", "to": "INTP", "weight": 1}, {"from": "Chanel", "to": "ISTP", "weight": 1}, {"from": "Chanel", "to": "ENFP", "weight": 1}, {"from": "Chanel", "to": "ENTP", "weight": 1}, {"from": "INTJ", "to": "Gucci", "weight": 1}, {"from": "INTJ", "to": "Dior", "weight": 1}, {"from": "INTJ", "to": "Versace", "weight": 1}, {"from": "INTJ", "to": "Prada", "weight": 1}, {"from": "INTJ", "to": "Ralph Lauren", "weight": 1}, {"from": "INTJ", "to": "Tiffany", "weight": 1}, {"from": "INTJ", "to": "Louis Vuitton", "weight": 1}, {"from": "INTJ", "to": "Cartier", "weight": 1}, {"from": "INTJ", "to": "Rolex", "weight": 1}, {"from": "INFP", "to": "Gucci", "weight": 1}, {"from": "INFP", "to": "Dior", "weight": 1}, {"from": "INFP", "to": "Versace", "weight": 1}, {"from": "INFP", "to": "Prada", "weight": 1}, {"from": "INFP", "to": "Ralph Lauren", "weight": 1}, {"from": "INFP", "to": "Tiffany", "weight": 1}, {"from": "INFP", "to": "Louis Vuitton", "weight": 1}, {"from": "INFP", "to": "Cartier", "weight": 1}, {"from": "INFP", "to": "Rolex", "weight": 1}, {"from": "INTP", "to": "Gucci", "weight": 1}, {"from": "INTP", "to": "Dior", "weight": 1}, {"from": "INTP", "to": "Versace", "weight": 1}, {"from": "INTP", "to": "Prada", "weight": 1}, {"from": "INTP", "to": "Ralph Lauren", "weight": 1}, {"from": "INTP", "to": "Tiffany", "weight": 1}, {"from": "INTP", "to": "Louis Vuitton", "weight": 1}, {"from": "INTP", "to": "Cartier", "weight": 1}, {"from": "INTP", "to": "Rolex", "weight": 1}, {"from": "ISTP", "to": "Dior", "weight": 1}, {"from": "ISTP", "to": "Versace", "weight": 1}, {"from": "ISTP", "to": "Prada", "weight": 1}, {"from": "ISTP", "to": "Rolex", "weight": 1}, {"from": "ENFP", "to": "Gucci", "weight": 1}, {"from": "ENFP", "to": "Dior", "weight": 1}, {"from": "ENFP", "to": "Prada", "weight": 1}, {"from": "ENFP", "to": "Ralph Lauren", "weight": 1}, {"from": "ENFP", "to": "Louis Vuitton", "weight": 1}, {"from": "ENFP", "to": "Cartier", "weight": 1}, {"from": "ENFP", "to": "Rolex", "weight": 1}, {"from": "ENTP", "to": "Gucci", "weight": 1}, {"from": "ENTP", "to": "Versace", "weight": 1}, {"from": "ENTP", "to": "Prada", "weight": 1}, {"from": "ENTP", "to": "Ralph Lauren", "weight": 1}, {"from": "ENTP", "to": "Tiffany", "weight": 1}, {"from": "ENTP", "to": "Cartier", "weight": 1}, {"from": "Ralph Lauren", "to": "ENFJ", "weight": 1}, {"from": "Cartier", "to": "ISFP", "weight": 1}, {"from": "Cartier", "to": "ENTJ", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
