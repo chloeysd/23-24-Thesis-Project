@@ -1,4 +1,0 @@
-Pillow
-regex
-tqdm
-matplotlib
