@@ -1,0 +1,51 @@
+<!-- Defines the document type as HTML5 -->
+<!-- ref:https://www.geeksforgeeks.org/templating-with-jinja2-in-flask/-->
+<!DOCTYPE html>
+<!-- Specifies the language of the document as English -->
+<html lang="en">
+<head>
+    <!-- Specifies the character encoding as UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Ensures proper scaling and layout on different screen sizes -->
+    <!-- ref:https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Sets the title of the webpage to "Image Result" -->
+    <title>Image Result</title>
+</head>
+<body>
+    <!-- Heading for the generated image section -->
+    <h2>Generated Image</h2>
+    <!-- Heading for the generated image section -->
+    <h2>Generated Image</h2>
+    <!-- Displays the generated image using base64-encoded data -->
+    <!-- https://stackoverflow.com/questions/8499633/how-to-display-base64-images-in-html -->
+    <img src="data:image/png;base64,{{ img_data }}" alt="Generated Image">
+    
+     <!-- Heading for the image rating section -->
+    <h3>Rate this Image</h3>
+    <!-- Form to submit the rating for the generated image -->
+    <!-- ref:https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form -->
+    <form method="POST" action="/submit_rating">
+         <!-- Label for rating the generated image -->
+        <label for="rating">Rate the generated image:</label><br>
+        <!-- Radio button for selecting 1 star rating -->
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1">1 Star</label><br>
+         <!-- Radio button for selecting 2 star rating -->
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2">2 Stars</label><br>
+        <!-- Radio button for selecting 3 star rating -->
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3">3 Stars</label><br>
+        <!-- Radio button for selecting 4 star rating -->
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4">4 Stars</label><br>
+        <!-- Radio button for selecting 5 star rating -->
+        <input type="radio" id="star5" name="rating" value="5">
+        <label for="star5">5 Stars</label><br><br>
+        
+        <!-- Submit button to send the rating -->
+        <input type="submit" value="Submit Rating">
+    </form>
+</body>
+</html>
